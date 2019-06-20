@@ -4,7 +4,7 @@ LABEL authors="IVEX"
 ENV DEBIAN_FRONTEND noninteractive
 ENV PATH /opt/conda/bin:$PATH
 
-RUN apt-get update \
+RUN apt-get update --fix-missing \
     && apt-get install -y wget git zsh vim g++ make cmake tmux htop \
     && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh \
     && cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
@@ -26,5 +26,5 @@ RUN mkdir -p projects \
     && git checkout master \
     && conda env create -f install/envs/ubuntu.yml
 
-VOLUME /app
-WORKDIR /app
+VOLUME /projects
+WORKDIR /projects
